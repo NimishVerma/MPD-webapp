@@ -1,2 +1,5 @@
 *.pyc
 *.ipynb
+static/
+*.mp4
+*.webm
