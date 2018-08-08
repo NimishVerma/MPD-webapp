@@ -1,7 +1,9 @@
-# ydl1.py
-from __future__ import unicode_literals
-import youtube_dl
+from youtube_dl import YoutubeDL
+url = 'http://dash.akamaized.net/dash264/CTA/imsc1/IT1-20171027_dash.mpd'
+ytdl = YoutubeDL()
+info = ytdl.extract_info(url, download=False)
 
-ydl_opts = {}
-with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-    ydl.download(['https://bae.sgp1.digitaloceanspaces.com/videos/61/dash/2c5633104904dba6ba359fb0102b6c5f.mpd'])
+formats = info['formats']
+
+for format in formats:
+	print (format)

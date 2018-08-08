@@ -8,7 +8,7 @@ def index(request):
 		url = request.POST['url']
 		print ("request received  " + request.POST['url'])
 		try:
-			download_mpd(url)
+			download_mpd.delay(url)
 		except:
 			return redirect('error')
 
