@@ -19,7 +19,7 @@ def download_mpd(url):
 
 	ydl_opts = {
 	    'format': 'bestvideo+bestaudio/best',
-	    'outtmpl': video_id+'%(ext)s',
+	    'outtmpl': 'media'+/video_id+'%(ext)s',
 	}
 	with youtube_dl.YoutubeDL(ydl_opts) as ydl:
 	    ydl.download([url])
