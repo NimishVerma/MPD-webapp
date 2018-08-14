@@ -29,5 +29,6 @@ def download_mpd(url):
 	obj.path = PROJECT_ROOT+'/media/'+ video_id + '.'+ext
 	print (obj.path)
 	obj.name = video_id+'.'+ext
+	obj.title = video_title
 	obj.save()
 	print("object saved")

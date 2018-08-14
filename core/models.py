@@ -12,7 +12,7 @@ class DownloadedVideos(models.Model):
 	path = models.FilePathField(path=settings.MEDIA_ROOT)
 
 	name = models.TextField(null=True, blank = True)
-	
+	title = models.TextField(null=True, blank=True)
 
 	def __str__(self):
 		if self.name:

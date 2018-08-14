@@ -1,8 +1,119 @@
-<h2>Videos Downloaded</h2>
-<ul>
-{% for video in object_list %}
- 		<li><a href="media/{{video.name}}">{{video}}</a></li>
+
+<html>
+<head>
+	<title>Queue</title>
+<style type="text/css">
+		html,body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font: 1.2em/1.4 'Oswald', sans-serif;
+  color: #fff;
+  text-align: right;
+}
+
+.rolldown-list {
+  text-align: left;
+  padding: 0;
+  margin: 0;
+}
+
+.rolldown-list li {
+  padding: 1em;
+  margin-bottom: .125em;
+  display: block;
+  list-style: none;
+  text-transform: uppercase;
+}
+
+.rolldown-list li {
+  visibility: hidden;
+  animation: rolldown .7s 1;
+  transform-origin: 50% 0;
+  animation-fill-mode: forwards;
+}
+
+.rolldown-list li:nth-child(2n) {
+  background-color: #a00;
+}
+
+.rolldown-list li:nth-child(2n+1) {
+  background-color: #0d0;
+}
+
+#myList {
+  position: absolute;
+  width: 50%; 
+  left: 50%;
+  margin-left: -25%;
+}
+
+#btnReload {
+  float: right;
+  color: #333;
+  background: #ccc;
+  text-transform: uppercase;
+  border: none;
+  padding: .5em 1em;
+}
+
+#btnReload:hover {
+  background: #ddd;
+}
+
+@keyframes rolldown {
+  0% {
+    visibility: visible;
+    transform: rotateX(180deg) perspective(500px);
+  }
+  70% {
+    visibility: visible;
+    transform: rotateX(-20deg);
+  }
+  100% {
+    visibility: visible;
+    transform: rotateX(0deg);
+  }
+	
+</style>
+
+</head>
+<body>
+
+
+<h1 style="
+    color:  black;
+    text-align:  left;
+">Videos Downloaded</h1>
+
+<ul class="rolldown-list" id="myList">
+ {% for video in object_list %}
+ 		<li><a href="media/{{video.name}}">{{video.title |title}}</a></li>
 {% empty %}
     <li>No articles yet.</li>
 {% endfor %}
 </ul>
+
+<button id="btnReload">Reload</button>
+<script type="text/javascript">
+	// Increments the delay on each item.
+$('.rolldown-list li').each(function () {
+  var delay = ($(this).index() / 4) + 's';
+  $(this).css({
+    webkitAnimationDelay: delay,
+    mozAnimationDelay: delay,
+    animationDelay: delay
+  });
+});
+
+$('#btnReload').click(function () {
+  $('#myList').removeClass('rolldown-list');
+  setTimeout(function () {
+    $('#myList').addClass('rolldown-list');
+  }, 1);
+});
+</script>
+</body>
+</html>
