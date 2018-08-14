@@ -1,7 +1,7 @@
 <h2>Videos Downloaded</h2>
 <ul>
 {% for video in object_list %}
- 		<li><a href="media{{video.path}}">{{video}}</a></li>
+ 		<li><a href="media/{{video.name}}">{{video}}</a></li>
 {% empty %}
     <li>No articles yet.</li>
 {% endfor %}
